@@ -1,0 +1,45 @@
+h1 {
+  color: darkcyan;
+}
+
+p > span {
+  font-family: 'Century Gothic';
+}
+
+.article-metadata {
+  font-size: small;
+}
+
+.article-metadata-element {
+  color: gray; 
+  margin-right: 30px;
+}
+
+.summary {
+  background-color: lightblue;
+  font-style: italic;
+  padding: 10px;
+}
+
+.paragraph {
+  line-height: 1.5em;
+}
+
+.comments {
+  height: 200px;
+  width: 100%;
+  background-color: lightsalmon;
+  padding: 20px 10px 10px 10px;
+  border: 1px solid lightslategray;
+  margin-bottom: 20px;
+  border-radius: 9px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.footer {
+  height: 100%;
+  width: 200px;
+  background-color: lightseagreen;
+}
+

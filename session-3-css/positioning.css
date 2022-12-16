@@ -1,0 +1,31 @@
+.menu {
+  position: relative;
+}
+
+.menu p {
+  background-color: aqua;
+  width: 50px;
+  position: relative;
+  margin-left: 10px;
+  padding: 3px;
+}
+
+.span-menu {
+  width: 100%;
+  border: 1px solid salmon;
+  padding: 10px;
+}
+
+.span-menu span {
+  background-color: lightcoral;
+  width: 100px;
+  margin: 10px;
+  padding: 3px;
+  display: inline-block;
+  overflow: auto;
+  height: 50px;
+}
+
+.span-menu span:nth-child(2) {
+  visibility: hidden;
+}

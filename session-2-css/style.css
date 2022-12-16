@@ -1,0 +1,20 @@
+* {
+  border: 1px solid black;
+}
+
+p,
+span {
+  color: red;
+}
+
+p:hover {
+  color: blue;
+}
+
+.sleep {
+  color: green;
+}
+
+#eat {
+  color: orange;
+}

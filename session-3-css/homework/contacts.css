@@ -1,0 +1,143 @@
+html, body {
+  margin: 0;
+  border: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  background-color: #e3b6fe;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+}
+
+.menu {
+  padding-left: 20px;
+}
+
+.title {
+  color: #0c0009;
+}
+
+.search {
+  padding-right: 20px;
+}
+
+.filter-menu {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  align-items: center;
+  height: 60px;
+}
+
+.sort {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  width: 80px;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.filter {
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  width: 125px;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.filter-circle {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #e3b6fe;
+  border-radius: 50%;
+}
+
+.contacts-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.contact {
+  border-top: solid 1px #f7f7f7;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 120px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding-left: 20px;
+}
+
+.profile-pic {
+  padding-left: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+.profile-pic-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.profile-pic-initials {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color:#e3b6fe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  font-size: large;
+  font-weight: bold;
+  color: #363636;
+}
+
+.role {
+  color: #a3a3a3;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.name-status {
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.online {
+  background-color: black;
+}
+
+.away {
+  background-color: #bbb;
+}
+
+.hidden {
+  display: none;
+}

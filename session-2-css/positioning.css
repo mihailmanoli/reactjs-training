@@ -1,0 +1,40 @@
+.comments {
+  height: 800px;
+  width: 600px;
+  background-color: lightsalmon;
+  padding: 20px 10px 10px 10px;
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  position: relative;
+}
+
+.footer {
+  height: 200px;
+  width: 600px;
+  background-color: lightseagreen;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+  top: 0px
+}
+
+.agreement {
+  height: 300px;
+  width: 600px;
+  padding: 10px;
+  background-color: lightgoldenrodyellow;
+}
+
+th, td {
+  padding: 10px;
+}
+
+.activities-header {
+  position: sticky;
+  top: 0;
+  background-color: lightcoral;
+}
+
+.activities-row {
+  position: relative;
+}
