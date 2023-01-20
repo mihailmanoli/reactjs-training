@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.stronger {
+  font-weight: 900;
+}
+
+.prettyDiv {
+  color: red;
+  font-style: oblique;
+}

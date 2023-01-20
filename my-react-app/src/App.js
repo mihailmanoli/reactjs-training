@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import MyClassComponent from './MyClassComponent';
+import FirstClassComponent from './FirstClassComponent';
+import SecondFunctionalComponent from './SecondFunctionalComponent';
+import ListComponent from './ListComponent';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // functional component = dumb component = has no self state
+  const names = ["Mihail", "Miha", "Ionut", "Ioana"];
+  const myList = names.map(name => <li key={name}>{name}</li>)
+  
+  return <>
+    <ul className="stronger">{myList}</ul>
+    <MyClassComponent />
+    <FirstClassComponent />
+    <SecondFunctionalComponent />
+    <ListComponent />
+  </>
 }
 
 export default App;
