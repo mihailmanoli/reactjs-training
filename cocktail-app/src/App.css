@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.menu-item {
+  border: red 1px solid;
+  width: 20%;
+  padding: 10px 0;
+  background-color: pink;
+}
+
+.cocktail-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.cocktail {
+  display: flex;
+  flex-direction: column;
+}
