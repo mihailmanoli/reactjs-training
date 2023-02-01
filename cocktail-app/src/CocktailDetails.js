@@ -13,6 +13,7 @@ export default function CocktailDetails(props) {
         <img
           src={getImageUrl(props.strDrinkThumb, false)}
           alt={props.strDrink}
+          className="image-big"
         />
       </div>
       <button onClick={goBack}>Back</button>

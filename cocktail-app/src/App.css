@@ -12,6 +12,7 @@
   width: 20%;
   padding: 10px 0;
   background-color: pink;
+  cursor: pointer;
 }
 
 .cocktail-list {
@@ -23,4 +24,31 @@
 .cocktail {
   display: flex;
   flex-direction: column;
+}
+
+.cocktail-link {
+  cursor: pointer;
+}
+
+.image-big {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.upload-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.upload-cocktail-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.upload-cocktail-details input[type="submit"] {
+  width: 120px;
 }

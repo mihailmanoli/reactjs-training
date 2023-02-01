@@ -8,7 +8,7 @@ export default function CocktailPreview(props) {
 
   return (
     <>
-      <div className="cocktail">
+      <div className="cocktail cocktail-link">
         <img
           onClick={onCocktailClick}
           src={getImageUrl(props.strDrinkThumb)}

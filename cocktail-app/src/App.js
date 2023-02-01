@@ -1,9 +1,11 @@
 import './App.css';
 import React, { useState } from 'react';
 import Category from './Category';
+import CocktailUpload from "./CocktailUpload";
 
 function App() {
   const [category, setCategory] = useState(null);
+  const [showUploadCocktail, setShowUploadCocktail] = useState(false);
 
   const goToPage = (page) => {
     let category = { name: '', api: '' }
@@ -25,7 +27,12 @@ function App() {
       category.api = 'http://thecocktaildb.com/api/json/v1/1/filter.php?g=Champagne_flute'
     }
 
+    setShowUploadCocktail(false);
     setCategory(category);
+  };
+
+  const onUploadClick = () => {
+    setShowUploadCocktail(true);
   };
 
   return (
@@ -39,7 +46,11 @@ function App() {
         <button onClick={() => goToPage('Champagne_flute')} className="menu-item">Champagne flute</button>
       </div>
       <div className='category'>
-        {category && <Category name={category.name} api={category.api} />}
+        {(category && !showUploadCocktail) && <Category name={category.name} api={category.api} />}
+      </div>
+      <div>
+        {!showUploadCocktail && <button onClick={onUploadClick}>Upload</button>}
+        {showUploadCocktail && <CocktailUpload />}
       </div>
     </div>
   );

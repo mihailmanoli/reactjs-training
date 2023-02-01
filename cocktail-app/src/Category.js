@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import CocktailPreview from "./CocktailPreview";
 import CocktailDetails from "./CocktailDetails";
-import CocktailUpload from "./CocktailUpload";
+
 
 export default function Category({ name, api }) {
   const [cocktails, setCocktails] = useState(null);
   const [currentCocktail, setCurrentCocktail] = useState(null);
-  const [showUploadCocktail, setShowUploadCocktail] = useState(true);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,12 +27,10 @@ export default function Category({ name, api }) {
     const data = await response.json();
 
     setCurrentCocktail(data.drinks[0]);
-    setShowUploadCocktail(false);
   };
 
   const clearSelection = () => {
     setCurrentCocktail(null);
-    setShowUploadCocktail(true);
   };
 
   const cocktailList =
@@ -44,10 +42,6 @@ export default function Category({ name, api }) {
         onCocktailClick={onCocktailClick}
       />
     ));
-
-  const onUploadClick = () => {
-    setShowUploadCocktail(true);
-  };
 
   return (
     <>
@@ -65,10 +59,6 @@ export default function Category({ name, api }) {
           <div className="cocktail-list">{cocktailList}</div>
         </>
       )}
-
-      {showUploadCocktail && <button onClick={onUploadClick}>Upload</button>}
-
-      {showUploadCocktail && <CocktailUpload />}
     </>
   );
 }
