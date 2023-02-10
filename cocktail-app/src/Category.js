@@ -25,7 +25,6 @@ export default function Category({ name, filter, timeout }) {
     const data = await response.json();
 
     setCurrentCocktail(data.drinks[0]);
-    setCocktails(null);
   };
 
   const clearSelection = () => {
