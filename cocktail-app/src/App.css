@@ -52,3 +52,11 @@
 .upload-cocktail-details input[type="submit"] {
   width: 120px;
 }
+
+.search-cocktail {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  width: 50%;
+}

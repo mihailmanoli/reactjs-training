@@ -8,23 +8,30 @@ function App() {
   const [showUploadCocktail, setShowUploadCocktail] = useState(false);
 
   const goToPage = (page) => {
-    let category = { name: '', api: '' }
+    let category = { name: '', filter: '', timeout: 0 }
 
-    if (page === "Alcoholic") {
-      category.name = 'Alcoholic'
-      category.api = 'http://thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic'
-    } else if (page === "Non_Alcoholic") {
-      category.name = 'Non Alcoholic'
-      category.api = 'http://thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic'
-    } else if (page === "Ordinary_Drink") {
-      category.name = 'Ordinary Drink'
-      category.api = 'http://thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink'
-    } else if (page === "Cocktail_glass") {
-      category.name = 'Cocktail Glass'
-      category.api = 'http://thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass'
-    } else if (page === "Champagne_flute") {
-      category.name = 'Champagne Flute'
-      category.api = 'http://thecocktaildb.com/api/json/v1/1/filter.php?g=Champagne_flute'
+    switch(page) {
+      case "Alcoholic":
+        category.name = 'Alcoholic';
+        category.filter = 'filter.php?a=Alcoholic';
+        break;
+      case "Non_Alcoholic":
+        category.name = 'Non Alcoholic'
+        category.filter = 'filter.php?a=Non_Alcoholic'
+        break;
+      case "Ordinary_Drink":
+        category.name = 'Ordinary Drink'
+        category.filter = 'filter.php?c=Ordinary_Drink'
+        break;
+      case "Cocktail_glass":
+        category.name = 'Cocktail Glass'
+        category.filter = 'filter.php?g=Cocktail_glass'
+        break;
+      case "Champagne_flute":
+        category.name = 'Champagne Flute'
+        category.filter = 'filter.php?g=Champagne_flute'
+        break;
+      default:      
     }
 
     setShowUploadCocktail(false);
@@ -33,6 +40,13 @@ function App() {
 
   const onUploadClick = () => {
     setShowUploadCocktail(true);
+  };
+
+  const handleFilter = (event) => {
+    const filter = event.target.value;    
+    let category = filter ? { name: 'Search Results', filter: 'search.php?s=' + filter, timeout: 500 }
+                          : { name: 'Alcoholic', filter: 'filter.php?a=Alcoholic' , timeout: 0 }
+    setCategory(category);
   };
 
   return (
@@ -45,9 +59,14 @@ function App() {
         <button onClick={() => goToPage('Cocktail_glass')} className="menu-item">Cocktail glass</button>
         <button onClick={() => goToPage('Champagne_flute')} className="menu-item">Champagne flute</button>
       </div>
-      <div className='category'>
-        {(category && !showUploadCocktail) && <Category name={category.name} api={category.api} />}
+      <div>
+        <input type="text" onChange={handleFilter} className='search-cocktail'/>
       </div>
+      <hr />
+      <div className='category'>
+        {(category && !showUploadCocktail) && <Category name={category.name} filter={category.filter} timeout={category.timeout} />}
+      </div>
+      <hr />
       <div>
         {!showUploadCocktail && <button onClick={onUploadClick}>Upload</button>}
         {showUploadCocktail && <CocktailUpload />}
