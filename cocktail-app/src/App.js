@@ -6,6 +6,7 @@ import CocktailUpload from "./CocktailUpload";
 function App() {
   const [category, setCategory] = useState(null);
   const [showUploadCocktail, setShowUploadCocktail] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const goToPage = (page) => {
     let category = { name: '', filter: '', timeout: 0 }
@@ -36,6 +37,7 @@ function App() {
 
     setShowUploadCocktail(false);
     setCategory(category);
+    setSearchTerm("");
   };
 
   const onUploadClick = () => {
@@ -47,6 +49,7 @@ function App() {
     let category = filter ? { name: 'Search Results', filter: 'search.php?s=' + filter, timeout: 500 }
                           : { name: 'Alcoholic', filter: 'filter.php?a=Alcoholic' , timeout: 0 }
     setCategory(category);
+    setSearchTerm(filter);
   };
 
   return (
@@ -60,13 +63,14 @@ function App() {
         <button onClick={() => goToPage('Champagne_flute')} className="menu-item">Champagne flute</button>
       </div>
       <div>
-        <input type="text" onChange={handleFilter} className='search-cocktail'/>
+        <input type="text" onChange={handleFilter} className='search-cocktail' 
+              placeholder='Search by name' value={searchTerm}/>
       </div>
       <hr />
       <div className='category'>
-        {(category && !showUploadCocktail) && <Category name={category.name} filter={category.filter} timeout={category.timeout} />}
+        {(category && !showUploadCocktail) 
+            && <Category name={category.name} filter={category.filter} timeout={category.timeout} />}
       </div>
-      <hr />
       <div>
         {!showUploadCocktail && <button onClick={onUploadClick}>Upload</button>}
         {showUploadCocktail && <CocktailUpload />}
