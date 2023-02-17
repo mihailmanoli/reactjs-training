@@ -1,56 +1,40 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 
-class Counter extends Component {
-  constructor(props) {
-    console.log("Constructor");
-    console.log("------------");
-    super(props);
-    this.state = { counter: 0, comments: [] };
+function Counter() {
+  const [counter, setCounter] = useState(0);
+  const [comments, setComments] = useState([]);
 
-    this.increment = () => this.setState({ counter: this.state.counter + 1 });
-    this.decrement = () => this.setState({ counter: this.state.counter - 1 });
+  const increment = () => setCounter(counter + 1);
+  const decrement = () => setCounter(counter - 1);
+  
+  function getComments() {
+    fetch("https://jsonplaceholder.typicode.com/comments")
+      .then((resp) => resp.json())
+      .then((comm) => setComments(comm))
+      .catch((err) => console.log(err));
   }
 
-  async componentDidMount() {
-    console.log("componentDidMount");
-    console.log("------------");
+  useEffect(() => {
+    console.log("component did mount");
+    getComments();
+    
+    return () => {
+      console.log("component will unmount");
+    };
+  }, []);
 
-    try {
-      const resp = await fetch("https://jsonplaceholder.typicode.com/comments");
-      const data = await resp.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
+  const commentsList = comments.map((c) => <li key={c.id}>{c.email}</li>);
 
-    // .then((resp) => resp.json())
-    // .then((data) => data.map(com => console.log(com.name)));
-
-    // this.setState({ comments: values });
-  }
-
-  render() {
-    console.log("RENDER");
-    console.log("------------");
-    return (
-      <>
-        <div>Counter value: {this.state.counter}</div>
-        <button onClick={this.increment}>Increment</button>
-        <button onClick={this.decrement}>Decrement</button>
-      </>
-    );
-  }
-
-  componentDidUpdate(prepProps, prevState) {
-    console.log("prevState", prevState);
-    console.log("componentDidUpdate");
-    console.log("------------");
-  }
-
-  componentWillUnmount() {
-    console.log("componentWillUnmount");
-    console.log("------------");
-  }
+  console.log("RENDER");
+  console.log("------------");
+  return (
+    <>
+      <div>Counter value: {counter}</div>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+      <ul>{commentsList}</ul>
+    </>
+  );
 }
 
 export default Counter;

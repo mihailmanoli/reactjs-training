@@ -1,58 +1,52 @@
 import React, { useState, useEffect } from "react";
+import Cocktail from "./Cocktail";
 import CocktailPreview from "./CocktailPreview";
-import CocktailDetails from "./CocktailDetails";
 
 export default function Category({ name, filter, timeout }) {
   const [cocktails, setCocktails] = useState(null);
-  const [currentCocktail, setCurrentCocktail] = useState(null);
-  
+  const [selectedCocktailId, setSelectedCocktailId] = useState(null);
+
   useEffect(() => {
     const getCocktails = setTimeout(async () => {
-      const response = await fetch(`http://thecocktaildb.com/api/json/v1/1/${filter}`);
+      const response = await fetch(
+        `https://thecocktaildb.com/api/json/v1/1/${filter}`
+      );
       const data = await response.json();
 
       setCocktails(data);
-      setCurrentCocktail(null);
+      setSelectedCocktailId(null);
     }, timeout);
 
     return () => clearTimeout(getCocktails);
   }, [filter, timeout]);
 
-  const onCocktailClick = async (idDrink) => {
-    const response = await fetch(
-      `http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`
-    );
-    const data = await response.json();
-
-    setCurrentCocktail(data.drinks[0]);
+  const onCocktailClick = (idDrink) => {
+    setSelectedCocktailId(idDrink);
   };
 
-  const clearSelection = () => {
-    setCurrentCocktail(null);
+  const clearSelectedCocktail = () => {
+    setSelectedCocktailId(null);
   };
 
-  const cocktailList =
-    cocktails &&
-    cocktails.drinks &&
-    cocktails.drinks.map((drink) => (
-      <CocktailPreview
-        key={drink.idDrink}
-        {...drink}
-        onCocktailClick={onCocktailClick}
-      />
-    ));
+  const cocktailList = cocktails?.drinks?.map((drink) => (
+    <Cocktail
+      key={drink.idDrink}
+      {...drink}
+      onCocktailClick={onCocktailClick}
+    />
+  ));
 
   return (
     <>
-      {currentCocktail && (
-        <CocktailDetails
-          key={currentCocktail.idDrink}
-          {...currentCocktail}
-          clearSelection={clearSelection}
-        />
-      )}
-
-      {!currentCocktail && (
+      {selectedCocktailId ? (
+        <>
+          <CocktailPreview
+            key={selectedCocktailId}
+            idDrink={selectedCocktailId}
+          />
+          <button onClick={clearSelectedCocktail}>Back</button>
+        </>
+      ) : (
         <>
           <h2>{name}</h2>
           <div className="cocktail-list">{cocktailList}</div>

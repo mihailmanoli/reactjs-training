@@ -1,28 +1,25 @@
+import { useState } from "react";
 import "./App.css";
-import { Component } from "react";
 import Counter from "./Counter";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showChild: false };
+function App() {
+  const [showChild, setShowChild] = useState(true);
+  
+  const show = () => setShowChild(true);
+  const hide = () => setShowChild(false);
+  
+  console.log("state", useState());
+  
+  console.log("APP render");
+  console.log("------------");
 
-    this.show = () => this.setState({ showChild: true });
-    this.hide = () => this.setState({ showChild: false });
-  }
-
-  render() {
-    console.log("APP render");
-    console.log("------------");
-
-    return (
-      <div className="App">
-        <button onClick={this.show}>Show Counter</button>
-        <button onClick={this.hide}>Hide Counter</button>
-        {this.state.showChild && <Counter />}
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <button onClick={show}>Show Counter</button>
+      <button onClick={hide}>Hide Counter</button>
+      {showChild && <Counter />}
+    </div>
+  );
 }
 
 export default App;
