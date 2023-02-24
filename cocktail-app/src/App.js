@@ -8,34 +8,18 @@ function App() {
   const [showUploadCocktail, setShowUploadCocktail] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // object literals
+  var pages = {
+    "Alcoholic": { name: 'Alcoholic', filter: 'filter.php?a=Alcoholic', timeout: 0 },
+    "Non_Alcoholic": { name: 'Non Alcoholic', filter: 'filter.php?a=Non_Alcoholic', timeout: 0 },
+    "Ordinary_Drink": { name: 'Ordinary Drink', filter: 'filter.php?c=Ordinary_Drink', timeout: 0 },
+    "Cocktail_glass": { name: 'Cocktail Glass', filter: 'filter.php?g=Cocktail_glass', timeout: 0 },
+    "Champagne_flute": { name: 'Champagne Flute', filter: 'filter.php?g=Champagne_flute', timeout: 0 }
+  }
+
   // menu
   const goToPage = (page) => {
-    let category = { name: '', filter: '', timeout: 0 }
-
-    switch(page) {
-      case "Alcoholic":
-        category.name = 'Alcoholic';
-        category.filter = 'filter.php?a=Alcoholic';
-        break;
-      case "Non_Alcoholic":
-        category.name = 'Non Alcoholic'
-        category.filter = 'filter.php?a=Non_Alcoholic'
-        break;
-      case "Ordinary_Drink":
-        category.name = 'Ordinary Drink'
-        category.filter = 'filter.php?c=Ordinary_Drink'
-        break;
-      case "Cocktail_glass":
-        category.name = 'Cocktail Glass'
-        category.filter = 'filter.php?g=Cocktail_glass'
-        break;
-      case "Champagne_flute":
-        category.name = 'Champagne Flute'
-        category.filter = 'filter.php?g=Champagne_flute'
-        break;
-      default:      
-    }
-
+    let category = pages[page];
     setShowUploadCocktail(false);
     setCategory(category);
     setSearchTerm("");
@@ -55,7 +39,7 @@ function App() {
   const handleFilter = (event) => {
     const filter = event.target.value;    
     let category = filter ? { name: 'Search Results', filter: 'search.php?s=' + filter, timeout: 500 }
-                          : { name: 'Alcoholic', filter: 'filter.php?a=Alcoholic' , timeout: 0 }
+                          : pages["Alcoholic"]
     setCategory(category);
     setSearchTerm(filter);
     setShowUploadCocktail(false);
