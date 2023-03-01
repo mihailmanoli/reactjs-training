@@ -1,8 +1,8 @@
-import "./App.css";
+import "../App.css";
 import { useState } from "react";
 
 export default function CocktailUpload() {
-  const [cocktail, setCocktail] = useState({
+  const [cocktail] = useState({
     cocktailName: "Cocktail name",
     firstIngredient: "Ingredient 1",
     secondIngredient: "Ingredient 2",
