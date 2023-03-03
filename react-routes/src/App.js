@@ -11,9 +11,22 @@ const routes = createBrowserRouter([
     path: "/",
     element: <Root />,
     errorElement: <Error />,
+    id: "root",
+    loader: async () => {
+      const resp = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+      const data = await resp.json();
+      return data;
+    },
     children: [
       { path: "/", element: <Home /> },
-      { path: "/category", element: <Category /> },
+      { path: "/category", 
+        element: <Category />,
+        loader: async () => {
+          const resp = await fetch('https://jsonplaceholder.typicode.com/albums');
+          const data = await resp.json();
+          return data;
+        }, 
+      },
       { path: "/category/:categoryId", element: <CategoryDetails /> }
     ],
   },

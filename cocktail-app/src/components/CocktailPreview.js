@@ -2,21 +2,18 @@ import "../App.css";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getImageUrl } from "../utils";
+import { getCocktail } from "../service/RestApiService";
 
 export default function CocktailPreview() {
   const [cocktail, setCocktail] = useState({});
   const {cocktailId} = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`
-      );
-      const data = await response.json();
+    getCocktail(cocktailId).then((data) => {
       setCocktail(data.drinks[0]);
-    };
-
-    fetchData();
+    }).catch((err) => {
+      console.log(err);
+    })
   }, [cocktailId]);
 
   return (
