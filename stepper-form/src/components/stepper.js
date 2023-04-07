@@ -26,14 +26,30 @@ export default function HorizontalLinearStepper() {
     designation: "",
   });
 
+  const [validationErrors, setValidationErrors] = React.useState({
+    emailError: false
+  })
+
   const handleChange = (input) => (e) => {
     const modifiedUser = { ...user };
     modifiedUser[input] = e.target.value;
     setUser(modifiedUser);
+
+    if (input === 'email') {
+      if (!(/\S+@\S+\.\S+/.test(e.target.value))) {
+        const modifiedValidationErrors = {...validationErrors};
+        modifiedValidationErrors.emailError = true;
+        setValidationErrors(modifiedValidationErrors);
+      } else {
+        const modifiedValidationErrors = {...validationErrors};
+        modifiedValidationErrors.emailError = false;
+        setValidationErrors(modifiedValidationErrors);
+      }
+    }
   };
 
   const forms = [
-    <SignUp {...user} handleChange={handleChange} />,
+    <SignUp {...user} {...validationErrors} handleChange={handleChange} />,
     <PersonalInfo {...user} handleChange={handleChange} />,
     <ProfessionalInfo {...user} handleChange={handleChange} />,
   ];

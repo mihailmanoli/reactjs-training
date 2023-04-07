@@ -5,6 +5,7 @@ export default function SignUp(props) {
                 <div style={{ display: "flex", flexDirection: "column", gap: "5px"}}>
                     <label>Email Address</label>
                     <input type="email" name="user-email" value={props.email} onChange={props.handleChange('email')} />
+                    {props.emailError && <span style={{color: "red"}}>Email is not valid!</span>}
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "5px"}}>
                     <label>Password</label>
